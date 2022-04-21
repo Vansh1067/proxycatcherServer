@@ -6,6 +6,6 @@ const app=express()
 app.use("/",(req,res,next)=>{
         res.send("Welcome to ProxyCatcher")
 })
-app.listen(3000,()=>{
+app.listen(process.env.PORT||3000,()=>{
     console.log("Server created successfully")
 })
