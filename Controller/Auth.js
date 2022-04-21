@@ -22,6 +22,9 @@ exports.registration=(req,res,next)=>{
                         "name":data.name,
                         "email":data.email,
                         "branch":data.branch,
+                        "year":data.userType==1?data.year:"",
+                        "role":data.userType==2?data.role:"",
+                        "semester":data.userType==1?data.semester:"",
                         "userId":data.userId,
                         "phone":data.phone,
                         "password":hash,
@@ -53,7 +56,7 @@ exports.login=(req,res,next)=>{
             bcrypt.compare(password,data.password)
             .then(match=>{
                 if(!match){
-                    next('Invalid Email and Passowrd')
+                    next('Invalid Username and Passowrd')
                 }else{
                     const token=jwt.sign({userId:data._id},JWT_SECRET);
                     res.json({
