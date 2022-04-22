@@ -8,6 +8,8 @@ const path=require('path')
 
 const {mongoDbURL,PORT} =require('./config/keys')
 const AuthRoutes=require("./Routes/Auth")
+const ProfileRoutes=require("./Routes/profile")
+
 app.use(express.static(path.join(__dirname,'public')))
 app.use(bodyParser.json({extended:false}))
 app.use((req,res,next)=>{
@@ -21,6 +23,8 @@ app.use((req,res,next)=>{
 
 
 app.use("/auth",AuthRoutes)
+app.use("/profile",ProfileRoutes)
+
 app.use((error,req,res,next)=>{
     res.json({
         error:error

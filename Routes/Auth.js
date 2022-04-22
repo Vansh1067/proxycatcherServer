@@ -6,6 +6,8 @@ const AuthController=require('../Controller/Auth')
 
 router.post('/registration',AuthController.registration)
 router.post('/login',AuthController.login)
+router.post('/forgotpassword',AuthController.forgotpassword)
+
 
 
 

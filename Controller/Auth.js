@@ -73,3 +73,11 @@ exports.login=(req,res,next)=>{
     }).catch(err=>{next(err)})
 
 }
+
+exports.forgotpassword=(req,res,next)=>{
+
+        const {email}=req.body;
+        res.json({
+            message:'Reset link send to your email id'
+        })
+}
