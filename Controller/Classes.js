@@ -24,3 +24,38 @@ exports.addClasses=(req,res,next)=>{
         }
     }).catch(err=>{next(err)})
 }
+
+exports.getAllClasses=(req,res,next)=>{
+
+    Classes.find({}).then(classes=>{
+        console.log(classes)
+        if(!classes.length){
+            next("No Class Found");
+            return
+         }else{
+        return res.json({
+            message:'All Classes Found',
+            data:classes
+        })
+    }
+    }).catch(err=>{next(err)})
+
+
+}
+exports.getTeacherClasses=(req,res,next)=>{
+    const {teacherId}=req.params
+    Classes.find({teacherId:teacherId}).then(classes=>{
+        console.log(classes)
+        if(!classes.length){
+            next("No Class Found");
+            return
+         }else{
+        return res.json({
+            message:'Classes Found',
+            data:classes
+        })
+    }
+    }).catch(err=>{next(err)})
+
+
+}

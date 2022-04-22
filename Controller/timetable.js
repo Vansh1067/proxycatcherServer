@@ -20,3 +20,20 @@ exports.addTimetable=(req,res,next)=>{
     
    
 }
+exports.getAllTimeTable=(req,res,next)=>{
+
+    TimeTable.find({}).then(timetable=>{
+        console.log(timetable)
+        if(!timetable.length){
+            next("No Time Table Found");
+            return
+         }else{
+        return res.json({
+            message:'All Time Table Found',
+            data:timetable
+        })
+    }
+    }).catch(err=>{next(err)})
+
+
+}
