@@ -9,6 +9,6 @@ exports.profileDetails=(req,res,next)=>{
             message:'User found',
             data:user
         })
-    })
+    }).catch(err=>{next(err)})
 
 }

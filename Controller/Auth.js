@@ -37,7 +37,7 @@ exports.registration=(req,res,next)=>{
                     return NewUser.save().then((user)=>{
                         res.json({
                             message:'User Created successfully',
-                            user:user
+                            data:user
                         })
                     })
                    

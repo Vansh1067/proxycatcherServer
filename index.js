@@ -9,6 +9,10 @@ const path=require('path')
 const {mongoDbURL,PORT} =require('./config/keys')
 const AuthRoutes=require("./Routes/Auth")
 const ProfileRoutes=require("./Routes/profile")
+const ClassesRoutes=require("./Routes/classes")
+const TimetableRoutes=require("./Routes/timetable")
+
+
 
 app.use(express.static(path.join(__dirname,'public')))
 app.use(bodyParser.json({extended:false}))
@@ -24,6 +28,10 @@ app.use((req,res,next)=>{
 
 app.use("/auth",AuthRoutes)
 app.use("/profile",ProfileRoutes)
+app.use("/classes",ClassesRoutes)
+app.use("/timetable",TimetableRoutes)
+
+
 
 app.use((error,req,res,next)=>{
     res.json({
