@@ -19,8 +19,23 @@ exports.createPoll=(req,res,next)=>{
 }
 
 exports.getPolls=(req,res,next)=>{
+    const {userId}=req.params;
+    Polls.find({sender:{$elemMatch:{userId}}}).then((result)=>{
+        console.log(result,'kks')
+        res.json({
+            message:'Polls found',
+            data:result
+        })
+    })
 
 }
 exports.getPollDetails=(req,res,next)=>{
+    const {pollId}=req.params;
+    Polls.findOne({_id:pollId}).populate("sender.userId").populate("responser.userId").then(poll=>{
+        res.json({
+            message:'Poll found',
+            data:poll
+        })
+    })
 
 }
