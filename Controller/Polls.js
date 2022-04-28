@@ -3,8 +3,8 @@ const Polls=require('../model/Polls')
 
 
 exports.createPoll=(req,res,next)=>{
-    const {title,description,sender,options}=req.body;
-    const data={title,description,sender,options}
+    const {title,description,sender,options,createdBy}=req.body;
+    const data={title,description,sender,options,createdBy}
     console.log(data)
 
     const poll= new Polls(data)

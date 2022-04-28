@@ -12,6 +12,8 @@ const ProfileRoutes=require("./Routes/profile")
 const ClassesRoutes=require("./Routes/classes")
 const TimetableRoutes=require("./Routes/timetable")
 const PollsRoutes=require("./Routes/Polls")
+const NoticesRoutes=require("./Routes/notices")
+
 
 
 
@@ -33,6 +35,8 @@ app.use("/profile",ProfileRoutes)
 app.use("/classes",ClassesRoutes)
 app.use("/timetable",TimetableRoutes)
 app.use("/polls",PollsRoutes)
+app.use("/notice",NoticesRoutes)
+
 
 
 
