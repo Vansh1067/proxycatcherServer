@@ -12,9 +12,9 @@ const UserSchema=new Schema({
     userId:{type:Schema.Types.String,required:true},
     phone:{type:Schema.Types.String,required:true},
     password:{type:Schema.Types.String,required:true},
-    userType:{type:Schema.Types.String,required:true},
-    approve:{type:Schema.Types.String,default:false},
-    emailVerify:{type:Schema.Types.String,default:false},
+    userType:{type:Schema.Types.Number,required:true},
+    approve:{type:Schema.Types.String,default:""},
+    emailVerify:{type:Schema.Types.Boolean,default:false},
 },{timestamps:true})
 
 

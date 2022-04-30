@@ -29,14 +29,13 @@ exports.registration=(req,res,next)=>{
                         "phone":data.phone,
                         "password":hash,
                         "userType":data.userType,
-                        "approve":data.userType==3,
-                        "emailVerify":data.userType==3
-
+                        "approve":data.userType==3?"true":"",
+                    
                     }
                     const NewUser=new User(saveData);
                     return NewUser.save().then((user)=>{
                         res.json({
-                            message:'User Created successfully',
+                            message:'Account Created successfully',
                             data:user
                         })
                     })
@@ -61,7 +60,9 @@ exports.login=(req,res,next)=>{
                     const token=jwt.sign({userId:data._id},JWT_SECRET);
                     res.json({
                         token:token,
-                        username:data.username
+                        approve:data.approve,
+                        emailVerify:data.emailVerify,
+                        userId:data._id
                     })
                 }
 
