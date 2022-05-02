@@ -14,7 +14,8 @@ exports.profileDetails=(req,res,next)=>{
 }
 exports.pendingApprovalRequest=(req,res,next)=>{
     const {userType}=req.params;
-    User.find({userType:userType},{password:0}).then(user=>{
+    console.log(userType)
+    User.find({userType:+userType,approve:""},{password:0}).then(user=>{
         console.log(user);
         res.json({
             message:'User found',
@@ -22,4 +23,16 @@ exports.pendingApprovalRequest=(req,res,next)=>{
         })
     }).catch(err=>{next(err)})
 
+}
+
+exports.pendingRequest=(req,res,next)=>{
+    const {userId}=req.params;
+    const {approve}=req.body
+    User.updateOne({_id:userId},{approve:approve}).then(user=>{
+        console.log(user)
+        res.json({
+            message:'Request Succesfully',
+            data:user
+        })
+    })
 }
