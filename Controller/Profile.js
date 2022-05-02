@@ -36,3 +36,12 @@ exports.pendingRequest=(req,res,next)=>{
         })
     })
 }
+exports.getHods=(req,res,next)=>{
+    User.find({userType:3}).then(user=>{
+        console.log(user)
+        res.json({
+            message:'Hods found',
+            HODs:user
+        })
+    })
+}

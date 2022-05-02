@@ -6,9 +6,9 @@ const ProfileController=require('../Controller/Profile')
 
 
 
+router.get('/getHods',ProfileController.getHods)
 
 router.get('/:userId',ProfileController.profileDetails)
-router.get('/getHods',ProfileController.getHods)
 
 router.get('/approvalRequest/:userType',ProfileController.pendingApprovalRequest)
 router.post('/approvedUser/:userId',ProfileController.pendingRequest)

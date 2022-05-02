@@ -40,11 +40,3 @@ exports.getPollDetails=(req,res,next)=>{
     })
 
 }
-exports.getHods=()=>{
-    User.find({userType:3}).then(user=>{
-        res.json({
-            message:'Hods found',
-            HODs:user
-        })
-    })
-}
