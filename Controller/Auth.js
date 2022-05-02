@@ -30,6 +30,7 @@ exports.registration=(req,res,next)=>{
                         "password":hash,
                         "userType":data.userType,
                         "approve":data.userType==3?"true":"",
+                        "hodId":data.hodId
                     
                     }
                     const NewUser=new User(saveData);
