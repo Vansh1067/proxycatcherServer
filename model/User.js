@@ -15,6 +15,7 @@ const UserSchema=new Schema({
     userType:{type:Schema.Types.Number,required:true},
     approve:{type:Schema.Types.String,default:""},
     emailVerify:{type:Schema.Types.Boolean,default:false},
+    hodId:{type:Schema.Types.ObjectId,ref:'user'}
 },{timestamps:true})
 
 
