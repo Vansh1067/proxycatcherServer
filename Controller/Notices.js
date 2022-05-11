@@ -3,8 +3,8 @@ const Notices=require('../model/Notices')
 
 
 exports.createNotice=(req,res,next)=>{
-    const {title,description,sender,createdBy,imgUrl}=req.body;
-    const data={title,description,sender,imgUrl,createdBy}
+    const {description,sender,createdBy,imgUrl}=req.body;
+    const data={description,sender,imgUrl,createdBy}
     console.log(data)
 
     const notice= new Notices(data)
@@ -20,12 +20,20 @@ exports.createNotice=(req,res,next)=>{
 
 exports.getNotice=(req,res,next)=>{
     const {userId}=req.params;
-    Notices.find({sender:{$elemMatch:{userId}}}).then((result)=>{
+    Notices.find({$or:[{sender:{$elemMatch:{userId}}},{createdBy:userId}]}).then((result)=>{
         console.log(result,'kks')
-        res.json({
-            message:'Notices found',
-            data:result
-        })
+        if(result.length>0){
+            res.json({
+                message:'Notices found',
+                data:result
+            })
+         }else{
+            res.json({
+                message:'No Notices found',
+                data:result
+            })
+         }
+      
     })
 
 }

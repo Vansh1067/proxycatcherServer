@@ -21,8 +21,8 @@ exports.addTimetable=(req,res,next)=>{
    
 }
 exports.getAllTimeTable=(req,res,next)=>{
-
-    TimeTable.find({}).then(timetable=>{
+    const {userId}=req.params;
+    TimeTable.find({$or:[{hodId:userId},{days:{$elemMatch:{$or:[{students:{$elemMatch:{userId}}},{teacherId:userId}]}}}]}).populate('days.teacherId').populate('days.classesId').then(timetable=>{
         console.log(timetable)
         if(!timetable.length){
             next("No Time Table Found");

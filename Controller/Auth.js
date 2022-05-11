@@ -63,7 +63,9 @@ exports.login=(req,res,next)=>{
                         token:token,
                         approve:data.approve,
                         emailVerify:data.emailVerify,
-                        userId:data._id
+                        userId:data._id,
+                        userType:data.userType,
+                        branch:data.branch
                     })
                 }
 

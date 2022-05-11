@@ -13,9 +13,9 @@ exports.profileDetails=(req,res,next)=>{
 
 }
 exports.pendingApprovalRequest=(req,res,next)=>{
-    const {userType}=req.params;
+    const {userType,userId}=req.params;
     console.log(userType)
-    User.find({userType:+userType,approve:""},{password:0}).then(user=>{
+    User.find({userType:+userType,approve:"",hodId:userId},{password:0}).then(user=>{
         console.log(user);
         res.json({
             message:'User found',
@@ -25,6 +25,18 @@ exports.pendingApprovalRequest=(req,res,next)=>{
 
 }
 
+exports.getUsers=(req,res,next)=>{
+    const {userType,branch}=req.params;
+    console.log(userType)
+    User.find({userType:+userType,branch,approve:"true"},{password:0}).then(user=>{
+        console.log(user);
+        res.json({
+            message:'Users found',
+            data:user
+        })
+    }).catch(err=>{next(err)})
+
+}
 exports.pendingRequest=(req,res,next)=>{
     const {userId}=req.params;
     const {approve}=req.body
@@ -37,7 +49,7 @@ exports.pendingRequest=(req,res,next)=>{
     })
 }
 exports.getHods=(req,res,next)=>{
-    User.find().then(user=>{
+    User.find({userType:3}).then(user=>{
         console.log(user)
         res.json({
             message:'Hods found',

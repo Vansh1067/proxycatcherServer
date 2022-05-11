@@ -3,7 +3,7 @@ const router=express.Router();
 
 const timetableController=require('../Controller/timetable')
 
-router.get('/',timetableController.getAllTimeTable)
+router.get('/:userId',timetableController.getAllTimeTable)
 
 router.post('/',timetableController.addTimetable)
 

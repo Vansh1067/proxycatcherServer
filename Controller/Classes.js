@@ -11,7 +11,7 @@ exports.addClasses=(req,res,next)=>{
            return
         }else{
             const saveData={
-                name,code,branch,year,semester,teacherId,hodId
+                name,code,branch,year,semester,teacherId,hodId,students:[]
             }
             console.log(saveData)
             const classes= new Classes(saveData);
@@ -26,8 +26,8 @@ exports.addClasses=(req,res,next)=>{
 }
 
 exports.getAllClasses=(req,res,next)=>{
-
-    Classes.find({}).then(classes=>{
+    const {userId}=req.params;
+    Classes.find({$or:[{student:{$elemMatch:{userId}}},{hodId:userId},{teacherId:userId}]}).populate("teacherId").then(classes=>{
         console.log(classes)
         if(!classes.length){
             next("No Class Found");

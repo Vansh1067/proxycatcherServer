@@ -3,7 +3,7 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const NoticeSchema=new Schema({
-    title:{type:Schema.Types.String,required:true},
+   
     description:{type:Schema.Types.String,required:true},
     imgUrl:{type:Schema.Types.String},
     createdBy:{type:Schema.Types.ObjectId,ref:'user'},

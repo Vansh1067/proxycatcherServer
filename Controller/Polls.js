@@ -4,8 +4,10 @@ const User = require('../model/User');
 
 
 exports.createPoll=(req,res,next)=>{
-    const {title,description,sender,options,createdBy}=req.body;
-    const data={title,description,sender,options,createdBy}
+    //console.log(req)
+
+    const {description,sender,options,createdBy}=req.body;
+    const data={description,sender,options,createdBy}
     console.log(data)
 
     const poll= new Polls(data)
@@ -19,17 +21,25 @@ exports.createPoll=(req,res,next)=>{
 
 }
 
-exports.getPolls=(req,res,next)=>{
+ exports.getPolls=(req,res,next)=>{
     const {userId}=req.params;
-    Polls.find({sender:{$elemMatch:{userId}}}).then((result)=>{
-        console.log(result,'kks')
+    Polls.find({$or:[{sender:{$elemMatch:{userId}}},{createdBy:userId}]}).then((result)=>{
+     if(result.length>0){
         res.json({
             message:'Polls found',
             data:result
         })
+     }else{
+        res.json({
+            message:'No Polls found',
+            data:result
+        })
+     }
+     
     })
 
-}
+} 
+
 exports.getPollDetails=(req,res,next)=>{
     const {pollId}=req.params;
     Polls.findOne({_id:pollId}).populate("sender.userId").populate("responser.userId").then(poll=>{

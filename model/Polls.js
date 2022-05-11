@@ -3,7 +3,7 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const PollSchema=new Schema({
-    title:{type:Schema.Types.String,required:true},
+ 
     description:{type:Schema.Types.String,required:true},
     createdBy:{type:Schema.Types.ObjectId,ref:'user'},
     options:[{title:{type:Schema.Types.String,required:true},number:{type:Schema.Types.Number,required:true}}],
