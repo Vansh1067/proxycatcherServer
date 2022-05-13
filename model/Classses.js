@@ -10,7 +10,7 @@ const ClassSchema=new Schema({
     semester:{type:Schema.Types.String,required:true},
     teacherId:{type:Schema.Types.ObjectId,required:true,ref:'user'},
     hodId:{type:Schema.Types.ObjectId,required:true,ref:'user'},
-    students:[{type:Schema.Types.ObjectId,required:true,ref:'user'}]
+    students:[{type:Schema.Types.ObjectId,required:true,ref:'user',unique:true}]
 
    
 },{timestamps:true})

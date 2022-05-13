@@ -59,3 +59,30 @@ exports.getTeacherClasses=(req,res,next)=>{
 
 
 }
+
+exports.addStudentsToClass=(req,res,next)=>{
+  
+    const {data,classId}=req.body
+    console.log(data,classId)
+    Classes.findByIdAndUpdate(classId,{$push:{students:data} }
+        ).then(classes=>{
+        console.log(classes)
+        res.json({
+            message:"Save",
+            classes
+        })
+    })
+}
+exports.removeStudentsToClass=(req,res,next)=>{
+  
+    const {data,classId}=req.body
+    console.log(data,classId)
+    Classes.findByIdAndUpdate(classId,{$pull:{students:data} }
+        ).then(classes=>{
+        console.log(classes)
+        res.json({
+            message:"Save",
+            classes
+        })
+    })
+}

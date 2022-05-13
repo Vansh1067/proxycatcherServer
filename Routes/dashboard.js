@@ -5,7 +5,7 @@ const DashboardController=require('../Controller/dashboard')
 
 
 
-router.get('/:userType/:userId',DashboardController.getDashboard)
+router.get('/:branch/:userId',DashboardController.getDashboard)
 
 module.exports=router
 
