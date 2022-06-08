@@ -6,11 +6,11 @@ exports.getDashboard=(req,res,next)=>{
     const {branch,userId}=req.params;
     User.findOne({_id:userId}).then(user=>{
        
-            User.countDocuments({branch:branch,userType:2},(err,teacher)=>{
+            User.countDocuments({branch:branch,userType:2,approve:'true'},(err,teacher)=>{
                  if(err){
                      next(err)
                  }else{
-                     User.countDocuments({branch:branch,userType:1},(err,student)=>{
+                     User.countDocuments({branch:branch,userType:1,approve:'true'},(err,student)=>{
                          if(err){
                              next(err)
                          }else{
@@ -19,7 +19,7 @@ exports.getDashboard=(req,res,next)=>{
                                      next(err)
                                  }else{
                                     
-                                    Polls.countDocuments({$or:[{sender:{$elemMatch:{userId}}},{createdBy:userId}]},(err,polls)=>{
+                                    Polls.countDocuments({$or:[{sender:{$elemMatch:{$eq:userId}}},{createdBy:userId}]},(err,polls)=>{
                                      console.log(polls)
                                      res.json({
                                          messsage:"found",

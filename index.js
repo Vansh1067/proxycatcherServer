@@ -14,6 +14,8 @@ const TimetableRoutes=require("./Routes/timetable")
 const PollsRoutes=require("./Routes/Polls")
 const NoticesRoutes=require("./Routes/notices")
 const DashboardRoutes=require("./Routes/dashboard")
+const AttendanceRoutes=require("./Routes/attendance")
+
 
 
 
@@ -39,6 +41,8 @@ app.use("/timetable",TimetableRoutes)
 app.use("/polls",PollsRoutes)
 app.use("/notice",NoticesRoutes)
 app.use("/dashboard",DashboardRoutes)
+app.use("/attendance",AttendanceRoutes)
+
 
 
 
