@@ -19,7 +19,7 @@ exports.getDashboard=(req,res,next)=>{
                                      next(err)
                                  }else{
                                     
-                                    Polls.countDocuments({$or:[{sender:{$elemMatch:{$eq:userId}}},{createdBy:userId}]},(err,polls)=>{
+                                    Polls.countDocuments({$or:[{sender:{$elemMatch:{userId}}},{createdBy:userId}]},(err,polls)=>{
                                      console.log(polls)
                                      res.json({
                                          messsage:"found",
